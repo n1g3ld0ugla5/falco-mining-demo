@@ -481,4 +481,19 @@ After this, launch a reverse shell listening on port 4242 with:
 nc -nlvp 4242
 ```
 
-###
+### Miscellaneous Commands
+
+```
+aws configure --profile nigel-aws-profile
+export AWS_PROFILE=nigel-aws-profile                                            
+aws sts get-caller-identity --profile nigel-aws-profile
+aws eks update-kubeconfig --region eu-west-1 --name nigel-eks-cluster
+```
+
+```
+eksctl create nodegroup --cluster nigel-eks-cluster --node-type t3.xlarge --nodes=1 --nodes-min=0 --nodes-max=3 --max-pods-per-node 58
+```
+
+```
+eksctl create cluster nigel-eks-cluster --node-type t3.xlarge --nodes=1 --nodes-min=0 --nodes-max=3 --max-pods-per-node 58
+```
