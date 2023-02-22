@@ -497,3 +497,10 @@ eksctl create nodegroup --cluster nigel-eks-cluster --node-type t3.xlarge --node
 ```
 eksctl create cluster nigel-eks-cluster --node-type t3.xlarge --nodes=1 --nodes-min=0 --nodes-max=3 --max-pods-per-node 58
 ```
+
+```
+eksctl get cluster
+eksctl get nodegroup --cluster nigel-eks-cluster
+eksctl scale nodegroup --cluster nigel-eks-cluster --name ng-6194909f --nodes 0
+eksctl delete cluster --name nigel-eks-cluster  
+```
