@@ -321,8 +321,8 @@ Added a custom rule to the normal rules feed by modifying the ```ConfigMap```
     user.loginname=%user.loginname user.name=%user.name group.gid=%group.gid
     group.name=%group.name container.id=%container.id
     container.name=%container.name %evt.args
-    priority: warning
-    tags:
+  priority: warning
+  tags:
     - cryptomining
   source: syscall
 
