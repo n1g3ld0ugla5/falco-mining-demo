@@ -1,6 +1,5 @@
 - name: custom-rules
   type: rulesfile
-  registry:
   repository: n1g3ld0ugla5/falco-mining-demo
   description: Custom rules
   home: https://raw.githubusercontent.com/n1g3ld0ugla5/falco-mining-demo/main/custom-rules.yaml
