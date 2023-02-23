@@ -504,3 +504,13 @@ eksctl get nodegroup --cluster nigel-eks-cluster
 eksctl scale nodegroup --cluster nigel-eks-cluster --name ng-6194909f --nodes 0
 eksctl delete cluster --name nigel-eks-cluster  
 ```
+
+## Custom Rules
+```
+helm upgrade falco -f custom-rules.yaml falcosecurity/falco -n falco
+```
+
+Edit the ConfigMap
+```
+kubectl edit cm falco-rules -n falco 
+```
