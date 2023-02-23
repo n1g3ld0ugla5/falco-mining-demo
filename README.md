@@ -525,3 +525,9 @@ helm upgrade falco -f custom-rules.yaml falcosecurity/falco --namespace falco \
   --set collectors.kubernetes.enabled=false \
   --set falcosidekick.webui.redis.storageEnabled=false
 ```
+
+Delete the ```statefulSet``` so that the Redis pod can start without ```storageClass```
+
+```
+kubectl get statefulset falco -n falco
+```
