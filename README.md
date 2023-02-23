@@ -514,3 +514,14 @@ Edit the ConfigMap
 ```
 kubectl edit cm falco-rules -n falco 
 ```
+
+Automate all the stuff
+```
+helm upgrade falco -f custom-rules.yaml falcosecurity/falco --namespace falco \
+  --create-namespace \
+  --set falcosidekick.enabled=true \
+  --set falcosidekick.webui.enabled=true \
+  --set auditLog.enabled=true \
+  --set collectors.kubernetes.enabled=false \
+  --set falcosidekick.webui.redis.storageEnabled=false
+```
