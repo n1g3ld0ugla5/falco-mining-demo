@@ -139,6 +139,11 @@ Run the cryptominer in background mode (this won't show anything in your shell)
 ./xmrig --donate-level 8 -o xmr-us-east1.nanopool.org:14433 -u 422skia35WvF9mVq9Z9oCMRtoEunYQ5kHPvRqpH1rGCv1BzD5dUY4cD8wiCMp4KQEYLAN1BuawbUEJE99SNrTv9N9gf2TWC --tls --coin monero --background
 ```
 
+Use the ```Stratum``` protocol
+```
+./xmrig -o stratum+tcp://xmr.pool.minergate.com:45700 -u lies@lies.lies -p x -t 2
+```
+
 If you'd like to see XMRig in action, run the shell file without any flags
 ```
 ./xmrig
