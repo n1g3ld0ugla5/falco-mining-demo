@@ -52,8 +52,8 @@ customRules:
       desc: Detects when a command is executed wit the -coin eth or -coin monero flag
       condition: >
         spawned_process
-        and proc.cmdline contains "-coin eth"
-        and proc.cmdline contains "-coin monero"
+        and proc.cmdline endswith "-coin eth"
+        and proc.cmdline endswith "-coin monero"
       output: >
         Command executed without specifying a cryptocurrency flag (user=%user.name container_id=%container.id command=%proc.cmdline)
       priority: WARNING
@@ -63,9 +63,7 @@ customRules:
       desc: Detects when the kubectl delete -f command is executed
       condition: >
         spawned_process
-        and proc.cmdline contains "kubectl"
-        and proc.cmdline contains "delete"
-        and proc.cmdline contains "-f"
+        and proc.cmdline startswith "kubectl delete -f"
       output: >
         kubectl delete -f command executed (user=%user.name container_id=%container.id command=%proc.cmdline)
       priority: NOTICE
