@@ -131,7 +131,7 @@ chmod u+s xmrig
 
 Should trigger the detection, but there's likely no actual change here:
 ```
-sudo find / -perm /6000 -type f
+find / -perm /6000 -type f
 ```
 
 Run the cryptominer in background mode (this won't show anything in your shell)
@@ -162,7 +162,7 @@ exit
 
 Destroy the pod:
 ```
-kubectl delete -f privileged-pod.yaml
+kubectl delete -f priviliged-pod.yaml
 ```
 
 ## Launch a suspicious network tool in a container
