@@ -19,21 +19,18 @@ customRules:
         user.loginname=%user.loginname user.name=%user.name group.gid=%group.gid
         group.name=%group.name container.id=%container.id
         container.name=%container.name %evt.args
-      priority: warning
+      priority: WARNING
       tags:
         - cryptomining
         - mitre_persistence
       source: syscall
 
-  rules-command.yaml: |-
     - rule: Command executed without specifying a cryptocurrency flag
-      desc: Detects when a command is executed without the -coin eth or -coin monero flag
+      desc: Detects when a command is executed wit the -coin eth or -coin monero flag
       condition: >
         spawned_process
-        and container
-        and not container_started_by_kubernetes
-        and proc.cmdline !contains "-coin eth"
-        and proc.cmdline !contains "-coin monero"
+        and proc.cmdline contains "-coin eth"
+        and proc.cmdline contains "-coin monero"
       output: >
         Command executed without specifying a cryptocurrency flag (user=%user.name container_id=%container.id command=%proc.cmdline)
       priority: WARNING
@@ -43,8 +40,6 @@ customRules:
       desc: Detects when the kubectl delete -f command is executed
       condition: >
         spawned_process
-        and container
-        and not container_started_by_kubernetes
         and proc.cmdline contains "kubectl"
         and proc.cmdline contains "delete"
         and proc.cmdline contains "-f"
