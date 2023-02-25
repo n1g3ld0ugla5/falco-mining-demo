@@ -73,4 +73,21 @@ customRules:
       condition: (
         proc.args contains "kubectl" and
         proc.args contains "apply" and
-        proc.args contains "-f" )  
+        proc.args contains "-f" )
+    
+    - rule: Outbound Connection to C2 Servers
+      desc: Detect outbound connection to command & control servers thanks to a list of IP addresses & a list of FQDN.
+      condition: >
+        outbound and 
+        ((fd.sip in (mining_ip_list)) or
+         (fd.sip.name in (mining_fqdn_list)))
+      output: Outbound connection to mining server (c2_domain=%fd.sip.name c2_addr=%fd.sip command=%proc.cmdline connection=%fd.name user=%user.name user_loginuid=%user.loginuid container_id=%container.id image=%container.image.repository)
+      priority: WARNING
+      tags: [host, container, network, mitre_command_and_control, TA0011]
+      
+    - list: mining_ip_list
+      items: []
+
+    - list: mining_fqdn_list
+      items: [
+          "xmr-us-east1.nanopool.org:14433" ]
