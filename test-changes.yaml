@@ -73,10 +73,7 @@ customRules:
       condition: (
         proc.args contains "kubectl" and
         proc.args contains "delete" and
-        proc.args contains "-f" and
-        proc.args ends_with ".yaml" and
-        proc.args.count("-f") == 1
-      )
+        proc.args contains "-f" )
     
     - rule: Outbound Connection to C2 Servers
       desc: Detect outbound connection to command & control servers thanks to a list of IP addresses & a list of FQDN.
