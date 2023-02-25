@@ -64,7 +64,7 @@ customRules:
       desc: Detects when a command is executed using the --background flag
       condition: >
         spawned_process
-        and proc.cmdline endswith "background"
+        and proc.cmdline endswith "--background"
       output: >
         Command executed without specifying a cryptocurrency flag (user=%user.name container_id=%container.id command=%proc.cmdline)
       priority: WARNING
