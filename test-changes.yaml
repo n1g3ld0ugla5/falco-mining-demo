@@ -53,18 +53,21 @@ customRules:
       condition: >
         spawned_process
         and proc.cmdline endswith "-coin eth"
-        and proc.cmdline endswith "-coin monero"
+        or proc.cmdline endswith "-coin monero"
       output: >
         Command executed without specifying a cryptocurrency flag (user=%user.name container_id=%container.id command=%proc.cmdline)
       priority: WARNING
       tags: [container, cryptocurrency, mitre_execution]
 
-    - rule: kubectl delete -f command executed
+    - rule: Destroy Kubernetes Resources
       desc: Detects when the kubectl delete -f command is executed
       condition: >
         spawned_process
-        and proc.cmdline startswith "kubectl delete -f"
+        and proc_args_with_kubectl_delete
       output: >
         kubectl delete -f command executed (user=%user.name container_id=%container.id command=%proc.cmdline)
       priority: NOTICE
       tags: [kubernetes, container, mitre_data_destruction]
+      
+    - macro: proc_args_with_kubectl_delete
+      condition: (proc.args contains "kubectl apply -f" or proc.args contains "pool.minexmr.com" or proc.args contains "pool.supportxmr.com" or proc.args contains "xmr-us-east1.nanopool.org" or proc.args contains "xmr-us-west1.nanopool.org")  
