@@ -60,14 +60,17 @@ customRules:
       tags: [container, cryptocurrency, mitre_execution]
 
     - rule: Destroy Kubernetes Resources
-      desc: Detects when the kubectl delete -f command is executed
+      desc: Detects kubectl delete cmd is executed
       condition: >
         spawned_process
         and proc_args_with_kubectl_delete
       output: >
-        kubectl delete -f command executed (user=%user.name container_id=%container.id command=%proc.cmdline)
+        Kubernetes resource was destroyed (user=%user.name container_id=%container.id command=%proc.cmdline)
       priority: NOTICE
       tags: [kubernetes, container, mitre_data_destruction]
       
     - macro: proc_args_with_kubectl_delete
-      condition: (proc.args contains "kubectl apply -f" or proc.args contains "pool.minexmr.com" or proc.args contains "pool.supportxmr.com" or proc.args contains "xmr-us-east1.nanopool.org" or proc.args contains "xmr-us-west1.nanopool.org")  
+      condition: (
+        proc.args contains "kubectl" and
+        proc.args contains "apply" and
+        proc.args contains "-f" )  
