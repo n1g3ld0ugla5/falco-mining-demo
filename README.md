@@ -164,8 +164,14 @@ cd
 mv xmrig-6.16.4 .xmrig-6.16.4
 ```
 
+Can't see hidden files:
 ```
 ls -l 
+```
+
+Show the hidden files:
+```
+ls -la
 ```
 
 To unhide the folder, run the command in reverse:
