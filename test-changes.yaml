@@ -53,8 +53,8 @@ customRules:
       desc: Detects when a command is executed with the -coin eth or -coin monero flag
       condition: >
         spawned_process
-        and proc.cmdline endswith "-coin eth"
-        or proc.cmdline endswith "-coin monero"
+           and (proc.cmdline endswith "-coin eth"
+           or proc.cmdline endswith "-coin monero")
       output: >
         Command executed with a specific cryptocurrency flag (user=%user.name container_id=%container.id command=%proc.cmdline)
       priority: WARNING
