@@ -1,0 +1,10 @@
+- rule: Command executed without specifying a cryptocurrency flag
+  desc: Detects when a command is executed wit the -coin eth or -coin monero flag
+  condition: >
+    spawned_process
+    and proc.cmdline endswith "-coin eth"
+    or proc.cmdline endswith "-coin monero"
+  output: >
+    Command executed without specifying a cryptocurrency flag (user=%user.name container_id=%container.id command=%proc.cmdline)
+  priority: WARNING
+  tags: [container, cryptocurrency, mitre_execution]
