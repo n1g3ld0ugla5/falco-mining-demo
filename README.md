@@ -154,6 +154,31 @@ Make sure the ```xmrig``` process is running
 top
 ```
 
+To hide a directory or folder, you can use the same ```mv``` command and append the ```.``` at the start of the directory name:
+
+```
+cd
+```
+
+```
+mv xmrig-6.16.4 .xmrig-6.16.4
+```
+
+```
+ls -l 
+```
+
+To unhide the folder, run the command in reverse:
+
+```
+mv .xmrig-6.16.4 xmrig-6.16.4
+```
+
+```
+ls -l 
+```
+
+
 Leave the pod:
 
 ```
