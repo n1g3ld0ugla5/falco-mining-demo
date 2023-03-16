@@ -9,6 +9,11 @@ Run the below ``` eksctl ``` command to create a minimal ``` one ``` node ``` EK
 eksctl create cluster nigel-eks-cluster --node-type t3.xlarge --nodes=1 --nodes-min=0 --nodes-max=3 --max-pods-per-node 58
 ```
 
+## Falco Sidekick UI
+```
+kubectl port-forward svc/falco-falcosidekick-ui 2802:2802 -n falco
+```
+
 ## Install Falco
 ```
 helm repo add falcosecurity https://falcosecurity.github.io/charts
