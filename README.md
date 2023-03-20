@@ -207,12 +207,9 @@ kubectl delete -f priviliged-pod.yaml
 kubectl apply -f priviliged-pod.yaml
 ```
 
+Shell into the same container we used earlier
 ```
-kubectl get pod -w
-```
-
-```
-kubectl exec -it test-pod-1 -- bash
+kubectl exec -it centos-server -n overly-permissive -- bash
 ```
 
 Installing a suspicious networking tool like telnet
@@ -247,6 +244,24 @@ Just to generate the detection, run telnet:
 ```
 telnet
 ```
+
+Let's also test ```tcpdump``` to prove the macro is working:
+```
+yum install tcpdump -y
+```
+
+```
+tcpdump -D
+```
+
+```
+tcpdump --version
+```
+
+```
+tcpdump -nnSX port 443
+```
+
 
 #### Explain the logic 
 check out the ```ConfigMap``` configuration for ```network_tool_binaries```:
