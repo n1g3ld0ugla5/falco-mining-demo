@@ -112,7 +112,7 @@ kubectl apply -f priviliged-pod.yaml
 ```
 
 ```
-kubectl exec -it centos-server -n overly-permissive -- bash
+kubectl exec -it test-pod-1 -- bash
 ```
 
 ```
